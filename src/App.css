@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 .App-logo {
@@ -26,6 +27,20 @@
 
 .App-link {
   color: #61dafb;
+}
+.formcotrol {
+  margin: 15px;
+}
+.list {
+  border: 1px black solid;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+.item {
+  justify-content: center;
+  margin: 25px;
+
 }
 
 @keyframes App-logo-spin {
