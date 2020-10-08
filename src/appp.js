@@ -8,19 +8,20 @@ class Appp extends Component {
         super();
         this.state ={
             newTodo: "",
+            editing: false,
             todos:[
                 { id: 1, text:"1 todo" },
                 { id: 2, text:"2 todo" },
                 { id: 3, text:"3 todo" },
                 { id: 4, text:"4 todo" },
                 { id: 5, text:"5 todo" },
-            ]
+            ],
+            editingKey: null
         }
 
         this.handleChange = this.handleChange.bind(this)
-        this.addTodo = this.addTodo.bind(this)
         this.generatorId = this.generatorId.bind(this)
-        this.deleteTodo = this.deleteTodo.bind(this)
+        this.updateTodo = this.updateTodo.bind(this)
     }
 
     handleChange(event) {
@@ -43,12 +44,47 @@ class Appp extends Component {
             text: this.state.newTodo   
         }
         const todos = this.state.todos
-        todos.push(newTodo)
 
+        if (newTodo.text !== "") {
+            todos.push(newTodo)
+        } else {
+            alert("write some text!")
+        }
+        
         this.setState({
             todos: todos, 
             newTodo: ""
         })
+    }
+
+    editTodo(key) {
+
+        const todo = this.state.todos[key]
+
+        this.setState({
+            editing: true,
+            newTodo: todo.text,
+            editingKey: key
+        })
+
+    }
+
+    updateTodo(key) {
+
+        const todo = this.state.todos[this.state.editingKey]
+        console.log(todo)
+        todo.text = this.state.newTodo
+
+        const todos = this.state.todos
+        todos[this.state.editingKey] = todo
+
+        this.setState({
+            todos,
+            editing: false,
+            editingKey: null,
+            newTodo: ""
+        })
+
     }
 
     deleteTodo(key) {
@@ -78,20 +114,23 @@ class Appp extends Component {
             onChange={this.handleChange}
             value={this.state.newTodo}
             />
-            <button className="addtodo"
-            onClick={this.addTodo}
-            >add todo</button>
+            <button
+            onClick={this.state.editing ? this.updateTodo : () =>{this.addTodo()} }
+            className="addtodo">
+            {this.state.editing ? 'Update Todo' : 'Add Todo'}
+            </button>
 
+            {!this.state.editing && 
             <div className="list">
                 {this.state.todos.map((item, key)=>(
                     <div key={key} className="item" id={item.id}>
                         {item.text}
-                        <button className="update">U</button>
+                        <button className="update" onClick={() => {this.editTodo(key)}}>U</button>
                         <button className="dell" onClick={() => {this.deleteTodo(key)}}>X</button>
                     </div>
                     )
                 )}
-            </div>
+            </div>}
     </div>
         )
     }
