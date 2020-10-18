@@ -1,18 +1,9 @@
 .App {
   text-align: center;
   position: relative;
+  margin: 0 20%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -29,25 +20,82 @@
   color: #61dafb;
 }
 .formcotrol {
-  margin: 15px;
+  margin: 10px;
 }
 .list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   border: 1px black solid;
-  margin: auto;
+  padding: 15px;
   text-align: center;
   align-items: center;
 }
 .item {
+  height: 0px;
+  padding-bottom: 50%;
+  /* border: 1px solid red; */
+  border-radius: 10px;
   justify-content: center;
-  margin: 25px;
-
+  margin: 15px;
+  position: relative;
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.13);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  height: 20%;
+  font-weight: 400;
+  font-size: 24px;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow: auto;
 }
+
+.btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+  cursor: pointer;
+  display: block;
+  /* border: 1px solid black; */
+  }
+
+  .close {
+    right: 0px;
+    top: 0px
+  }
+
+  .update {
+    line-height: 24px;
+    right: 0px;
+    bottom: 3px;
+    font-size: 24px;
+  }
+
+  .btn:hover {
+  opacity: 1;
+  }
+
+  .close:before, .close:after {
+  position: absolute;
+  right: 9px;
+  content: ' ';
+  height: 20px;
+  width: 2px;
+  background-color: #333;
+  }
+
+  .close:before {
+  transform: rotate(45deg);
+  }
+
+  .close:after {
+  transform: rotate(-45deg);
+  }
+
+

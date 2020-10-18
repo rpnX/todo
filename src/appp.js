@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css';
+import Item from './item';
 
 
 class Appp extends Component {
@@ -123,11 +124,12 @@ class Appp extends Component {
             {!this.state.editing && 
             <div className="list">
                 {this.state.todos.map((item, key)=>(
-                    <div key={key} className="item" id={item.id}>
-                        {item.text}
-                        <button className="update" onClick={() => {this.editTodo(key)}}>U</button>
-                        <button className="dell" onClick={() => {this.deleteTodo(key)}}>X</button>
-                    </div>
+                    <Item
+                    item = {item}
+                    key = {key}
+                    deleteTodo = {() => {this.deleteTodo(key)}}
+                    editTodo = {() => {this.editTodo(key)}}
+                    />
                     )
                 )}
             </div>}

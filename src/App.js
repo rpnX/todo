@@ -25,8 +25,7 @@ function App() {
             <button className="update">u</button>
             <button className="dell">X</button>
           </div>
-          
-          
+
     )
   )}
       </div>
